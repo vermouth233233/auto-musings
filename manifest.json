@@ -1,0 +1,8 @@
+{
+  "display_name": "Auto Musings",
+  "loading_order": 10,
+  "requires": [],
+  "optional": [],
+  "js": "index.js",
+  "css": ""
+}
