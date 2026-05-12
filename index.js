@@ -139,7 +139,7 @@
     // 触发生成
     try {
 console.log("[AM] before generate");
-await Generate("normal", {automatic_trigger: true});
+await ctx.generate("normal");
 console.log("[AM] after generate");
 } catch (e) {
 console.log("[Auto Musings] 生成失败:", e);
