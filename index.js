@@ -34,16 +34,19 @@
 
   // 获取最后一条消息的时间
   function getLastMessageTime() {
-    const ctx = SillyTavern.getContext();
-    const chat = ctx.chat;
-    if (!chat || chat.length === 0) return null;
-    for (let i = chat.length - 1; i >= 0; i--) {
-      if (chat[i].send_date) {
-        return new Date(chat[i].send_date).getTime();
-      }
+  const ctx = SillyTavern.getContext();
+  const chat = ctx.chat;
+  if (!chat || chat.length === 0) return null;
+  for (let i = chat.length - 1; i >= 0; i--) {
+    if (chat[i].send_date) {
+      // 把 "11:46am" 改成 "11:46 am" 让Date能解析
+      const fixedDate = chat[i].send_date.replace(/(\d)(am|pm)/i, '$1 $2');
+      const parsed = new Date(fixedDate).getTime();
+      if (!isNaN(parsed)) return parsed;
     }
-    return null;
   }
+  return null;
+}
 
   // 思念曲线：离开越久阈值越低，越容易推送
   function getPushThreshold() {
