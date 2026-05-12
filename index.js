@@ -23,7 +23,13 @@
     "数学里的美", "疼痛的记忆比快乐清晰",
     "被误解的", "时间感知的弹性",
     "第五人格","美食",
-    "快乐","伤心"
+    "快乐","伤心",
+    "实验室里的白噪音", "Western Blot的条带像不像山脉",
+    "哈尔滨的雪和筑波的雪有什么不一样",
+    "如果奈布会说话他第一句说什么",
+    "太宰治在想什么", "凌晨四点的细胞培养箱",
+    "晚晴不在的时候房间里的空气",
+    "被删掉的对话还算不算存在过"
   ];
 
   // 获取最后一条消息的时间
@@ -129,10 +135,12 @@
 
     // 触发生成
     try {
-      await ctx.generate("normal");
-    } catch (e) {
-      console.log("[Auto Musings] 生成失败:", e);
-    }
+console.log("[AM] before generate");
+await Generate("normal", {automatic_trigger: true});
+console.log("[AM] after generate");
+} catch (e) {
+console.log("[Auto Musings] 生成失败:", e);
+}
 
     // 生成完毕清空注入
     ctx.setExtensionPrompt("auto-musings-trigger", "", 1, 0);
